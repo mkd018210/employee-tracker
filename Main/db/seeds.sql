@@ -5,7 +5,7 @@ VALUES ("Human Resources"),
        ("Accounting");
 
 INSERT INTO roles  (department_id, role)
-VLAUES (1, "HR Manager"),
+VALUES (1, "HR Manager"),
        (2, "Marketing Manager"),
        (3, "Sales Manager"),
        (3, "Salesperson"),
