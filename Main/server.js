@@ -1,6 +1,7 @@
 const express = require('express');
 // Import and require mysql2
 const mysql = require('mysql2');
+const inquirer = require("inquirer");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -22,7 +23,7 @@ const db = mysql.createConnection(
   console.log(`Connected to the jobs_db database.`)
 );
 
-// Create a movie
+
 app.post('/api/new-department', ({ body }, res) => {
   const sql = `INSERT INTO department (department_name)
     VALUES (?)`;
@@ -40,7 +41,7 @@ app.post('/api/new-department', ({ body }, res) => {
   });
 });
 
-// Read all movies
+
 app.get('/api/departments', (req, res) => {
   const sql = `SELECT id, department_name AS title FROM departments`;
   
@@ -56,7 +57,7 @@ app.get('/api/departments', (req, res) => {
   });
 });
 
-// Delete a movie
+
 app.delete('/api/departments/:id', (req, res) => {
   const sql = `DELETE FROM departments WHERE id = ?`;
   const params = [req.params.id];
@@ -78,7 +79,7 @@ app.delete('/api/departments/:id', (req, res) => {
   });
 });
 
-// Read list of all reviews and associated movie name using LEFT JOIN
+
 app.get('/api/department-roles', (req, res) => {
   const sql = `SELECT department.department_name AS department, roles.role FROM roles LEFT JOIN departments ON roles.department_id = departments.id ORDER BY departments.department_name;`;
   db.query(sql, (err, rows) => {
@@ -93,7 +94,7 @@ app.get('/api/department-roles', (req, res) => {
   });
 });
 
-// BONUS: Update review name
+
 app.put('/api/role/:id', (req, res) => {
   const sql = `UPDATE roles SET role = ? WHERE id = ?`;
   const params = [req.body.role, req.params.id];
@@ -115,7 +116,7 @@ app.put('/api/role/:id', (req, res) => {
   });
 });
 
-// Default response for any other request (Not Found)
+
 app.use((req, res) => {
   res.status(404).end();
 });
