@@ -9,12 +9,12 @@ Challenges:
 The challenges I had were making sure I put all the right employees in the right departments on each data base.
 
 Future Development:
-For future development I would like to 
+For future development I would like to add more departments to the app for bigger businesses.
 
 Motivation:
 My motivation was to make an application that makes it easy to keep track of all employees in one area.
 
-Success:
+Success: I had success in creating the 
 
 Contributors:
 I used some code from our class activities and changed the information to go with my application
