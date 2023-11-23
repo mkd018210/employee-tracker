@@ -7,21 +7,24 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 // Express middleware
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+//app.use(express.urlencoded({ extended: false }));
+//app.use(express.json());
 
 // Connect to database
-const db = mysql.createConnection(
-  {
+const connection = mysql.createConnection({
     host: 'localhost',
-    // MySQL username,
+    port: 3306,
     user: 'root',
-    // TODO: Add MySQL password here
     password: 'Bootcamp2023SMU',
     database: 'jobs_db'
-  },
-  console.log(`Connected to the jobs_db database.`)
-);
+  });
+  //console.log(`Connected to the jobs_db database.`)
+
+  connection.connect((err) => {
+    if (err) throw err;
+    console.log("Connected to the database!")
+    Start();
+  });
 
 
 app.post('/api/new-department', ({ body }, res) => {
