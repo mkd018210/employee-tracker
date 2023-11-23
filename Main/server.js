@@ -2,7 +2,7 @@
 const mysql = require('mysql2');
 const inquirer = require("inquirer");
 const cfonts = require('cfonts');
-require("console.table");
+//require("console.table");
 
 // Express middleware
 //app.use(express.urlencoded({ extended: false }));
@@ -12,7 +12,7 @@ require("console.table");
 const db = mysql.createConnection(
   {
     host: 'localhost',
-    port: 3001,
+    port: 3306,
     user: 'root',
     password: 'Bootcamp2023SMU',
     database: 'jobs_db'
@@ -99,10 +99,7 @@ const db = mysql.createConnection(
   function viewAllDepartments() {
       const sql = "SELECT * FROM departments";
       db.query(sql, (err, res) => {
-          if (err) {
-            res.status(400).json({ error: err.message });
-            return;
-          }
+          if (err) throw err;
           console.table(res);
          
           mainMenu();
@@ -113,10 +110,7 @@ const db = mysql.createConnection(
   function viewAllRoles() {
       const sql = "SELECT roles.title, roles.id, departments.department_name, roles.salary from roles join departments on roles.department_id = departments.id";
       db.query(sql, (err, res) => {
-          if (err) {
-            res.status(400).json({ error: err.message });
-            return;
-          }
+          if (err) throw err;
           console.table(res);
           
           mainMenu();
@@ -133,10 +127,7 @@ const db = mysql.createConnection(
       LEFT JOIN employee m ON e.manager_id = m.id;
       `;
       db.query(sql, (err, res) => {
-          if (err) {
-            res.status(400).json({ error: err.message });
-            return;
-          }
+          if (err) throw err;
           console.table(res);
          
           mainMenu();
@@ -253,9 +244,9 @@ const db = mysql.createConnection(
       const queryEmployees =
           "SELECT employee.id, employee.first_name, employee.last_name, roles.title FROM employee LEFT JOIN roles ON employee.role_id = roles.id";
       const queryRoles = "SELECT * FROM roles";
-      connection.query(queryEmployees, (err, resEmployees) => {
+      db.query(queryEmployees, (err, resEmployees) => {
           if (err) throw err;
-          connection.query(queryRoles, (err, resRoles) => {
+          db.query(queryRoles, (err, resRoles) => {
               if (err) throw err;
               inquirer
                   .prompt([
@@ -286,7 +277,7 @@ const db = mysql.createConnection(
                       );
                       const query =
                           "UPDATE employee SET role_id = ? WHERE id = ?";
-                      connection.query(
+                      db.query(
                           query,
                           [role.id, employee.id],
                           (err, res) => {
@@ -308,6 +299,6 @@ const db = mysql.createConnection(
  
   
   process.on("exit", () => {
-      connection.end();
+      db.end();
   });
   
