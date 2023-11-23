@@ -6,18 +6,18 @@ Description:
 The application allows the user pull up employees by their name, department, or manager depending on what information they need.
 
 Challenges:
-The challenges I had were making sure I put all the right employees in the right departments on each data base.
+The challenges I had were making sure I put all the right employees in the right departments on each data base and getting that database to come up.
 
 Future Development:
 For future development I would like to add more departments to the app for bigger businesses.
 
 Motivation:
-My motivation was to make an application that makes it easy to keep track of all employees in one area.
+My motivation was to make an application that makes it easy to keep track of all employees, their roles, and managers in one area.
 
-Success: I had success in creating the 
+Success: I had success in creating the pretty title and getting the department table to come up.
 
 Contributors:
-I used some code from our class activities and changed the information to go with my application
+I used some code from our class activities and changed the information to go with my application. I also used Google to get some code.
 
 User Story:
 AS A business owner
